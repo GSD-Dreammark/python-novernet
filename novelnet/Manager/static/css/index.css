@@ -1,0 +1,33 @@
+#title{
+    position: relative;
+    background-color: #14b3bc;
+    height: 100px;
+}
+.login{
+    position: absolute;
+    top: 17px;
+    left: 55px;
+    font-size: 50px;
+    color: #fffbfe;
+}
+#title form{
+    display: inline-block;
+    position: absolute;
+    top: 35px;
+    left: 303px;
+    position: relative;
+}
+.title_input{
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width: 230px;
+    height: 37px;
+}
+#title .title_ul{
+     display: inline-block;
+    position: relative;
+    left: 800px;
+     top: -13px;
+
+}
