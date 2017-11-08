@@ -1,0 +1,7 @@
+<form action="/index/register/" method="post">
+    <input type="text" name="email" class="form-control" placeholder="用户名"><br>
+    <input type="password" name="pwd" class="form-control" placeholder="密码"><br>
+    <input type="text" name="nicheng" class="form-control" placeholder="昵称"><br>
+    <input type="submit" class="btn btn-primary" value="提交">
+    {% csrf_token %}
+</form>

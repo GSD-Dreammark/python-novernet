@@ -1,0 +1,12 @@
+create table users(
+	id bigint not null auto_increment primary key,
+	email varchar(60) not null,
+	pwd varchar(60) not null,
+	nicheng varchar(60) not null,
+	updtime timestamp not null,
+	role tinyint not null default 1,
+	msgnum int not null default 0,
+	createtime timestamp not null,
+	unique key emailuniq (email),
+	unique key nichenguniq (nicheng)
+)ENGINE=innodb DEFAULT CHARSET=utf8;

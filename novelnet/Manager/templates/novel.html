@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{# 开始替换主模板里面的 block content 区域#}
+{% block content %}
+    <script>
+    function popLogin(){
+        $('#modalBody').load('/loginpanel');
+        $('#myModal').modal('show');
+    }
+    function popZhuce(){
+        $('#modalBody').load('/zhucepanel');
+        $('#myModal').modal('show');
+    }
+    </script>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h class="left"><b>柠檬小说网</b></h>
+            <div class="btn-group">
+                <li class="active">
+                <button type="button" class="btn btn-default" onclick="popLogin()">登陆</button>
+                <button type="button" class="btn btn-default" onclick="popZhuce()">注册</button>
+                <button type="button" class="btn btn-default">充值</button>
+            </div>
+
+
+            <ul id="myTab" class="nav nav-tabs">
+                    <a href="#home" data-toggle="tab">
+                        首页
+                    </a>
+                </li>
+                <li><a href="#raking" data-toggle="tab">排行榜</a></li>
+                <li class="dropdown">
+                    <a href="#" id="myTabDrop1" class="dropdown-toggle"
+                       data-toggle="dropdown">分类
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#jmeter" tabindex="-1" data-toggle="tab">玄幻奇幻</a></li>
+                        <li><a href="#jemter1" tabindex="-1" data-toggle="tab">仙侠武侠</a></li>
+                        <li><a href="#jemter2" tabindex="-1" data-toggle="tab">都市小说</a></li>
+                        <li><a href="#jemter3" tabindex="-1" data-toggle="tab">古装言情</a></li>
+                        <li><a href="#jemter4" tabindex="-1" data-toggle="tab">历史军事</a></li>
+                        <li><a href="#jemter5" tabindex="-1" data-toggle="tab">游戏竞技</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">搜索</label>
+                    <input type="text" class="form-control" id="name" placeholder="请输入想阅读的书籍">
+                </div>
+            </form>
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <p>这是柠檬小说网的首页内容</p>
+                </div>
+                <div class="tab-pane fade" id="raking">
+                    <p>这是柠檬小说网的排行榜</p>
+                </div>
+                <div class="tab-pane fade" id="jmeter">
+                    <p>玄幻奇幻类书。</p>
+                </div>
+                <div class="tab-pane fade" id="jemter1">
+                    <p>仙侠武侠类书</p>
+                </div>
+                <div class="tab-pane fade" id="jemter2">
+                    <p>都市小说类书</p>
+                </div>
+                <div class="tab-pane fade" id="jemter3">
+                    <p>古装言情类书</p>
+                </div>
+                <div class="tab-pane fade" id="jemter4">
+                    <p>历史军事类书</p>
+                </div>
+                <div class="tab-pane fade" id="jemter5">
+                    <p>游戏竞技类书</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+{% endblock %}

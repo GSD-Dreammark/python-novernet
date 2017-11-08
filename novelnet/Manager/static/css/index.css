@@ -1,33 +1,131 @@
-#title{
+/**
+ +------------------------------------------------------------------------------
+ * 开始网站样式重写(初始化)
+ +------------------------------------------------------------------------------
+ */
+html {
+    -webkit-text-size-adjust: none; /*解决chrome浏览器下字体不能小于12px*/
+}
+
+body {
+    color: #333;
+    font-family: "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+    background-color: #f8f8f8
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: #333
+}
+
+a:hover {
+    text-decoration: none;
+    color: #4581e6
+}
+
+a:active {
+    star: expression(this.onFocus=this.blur());
+}
+
+a:focus {
+    outline: 0;
+}
+
+html {
+    zoom: 1;
+}
+
+html * {
+    outline: 0;
+    zoom: 1;
+}
+
+html button::-moz-focus-inner {
+    border-color: transparent !important;
+}
+
+body {
+    font-size: 14px;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    /*border-collapse:collapse;border-spacing:0;*/
+}
+
+fieldset, a img {
+    border: 0;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+li {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+input[type="submit"], input[type="reset"], input[type="button"], button {
+    -webkit-appearance: none; /*去掉苹果的默认UI来渲染按钮*/
+}
+
+em, i {
+    font-style: normal;
+}
+
+#title {
     position: relative;
     background-color: #14b3bc;
     height: 100px;
 }
-.login{
+
+.login {
     position: absolute;
     top: 17px;
     left: 55px;
     font-size: 50px;
     color: #fffbfe;
 }
-#title form{
+
+#title .form1 {
     display: inline-block;
     position: absolute;
     top: 35px;
     left: 303px;
     position: relative;
 }
-.title_input{
+
+.title_input {
     position: relative;
     display: table;
     border-collapse: separate;
     width: 230px;
     height: 37px;
 }
-#title .title_ul{
-     display: inline-block;
+
+#title .title_ul {
+    display: inline-block;
     position: relative;
     left: 800px;
-     top: -13px;
+    top: -13px;
 
 }
