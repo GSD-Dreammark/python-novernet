@@ -1,0 +1,44 @@
+{% extends 'source.html' %}
+{% load staticfiles %}
+{% block head %}
+{% endblock %}
+{% block mainbody %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-1" align="center"></div>
+            <div class="col-xs-2" align="center"><h1>logo</h1></div>
+            <div class="col-xs-3" align="center">
+                <div class="input-group" style="margin-top: 25px;">
+                    <input type="text" class="form-control">
+                    <span class="input-group-addon"><a href="#">搜索</a></span>
+                </div>
+            </div>
+            <div class="col-xs-5" align="center" style="margin-top: 25px;">
+                <ul class="breadcrumb">
+                    <li>你好,&nbsp; {{ session.nicheng }}</li>
+                    <li><a href="#">新消息 <span class="badge">0</span></a>&nbsp;</li>
+                    <li><a href="#">个人设置</a>&nbsp;</li>
+                    <li><a href="/index/write_off/">注销</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-1" align="center"></div>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-2" id="myScrollspy">
+        <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+            <li><a  href="/index/managerhome_writerapply/">作家申请</a></li>
+            <li><a  href="#menu2">书籍申请</a></li>
+            <li><a  href="#menu3">管理作家</a></li>
+            <li><a  href="#menu4">管理读者</a></li>
+            <li><a  href="/index/work_type/">作品类别</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-8" class="tab-pane fade" align="center">
+        {% block main %}
+            <h1>我的信息</h1>
+        {% endblock %}
+    </div>
+    <div class="col-xs-1"></div>
+
+{% endblock %}

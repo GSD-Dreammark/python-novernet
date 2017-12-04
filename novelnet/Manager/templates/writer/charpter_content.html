@@ -1,0 +1,12 @@
+<form class="charpter_form" action="/index/submit_charpter/" method="post">
+    {% if rs != None %}
+<input name="chaptername" type="text" placeholder="{{ rs.chaptername }}" class="form-control">
+    {% else %}
+<input name="chaptername" type="text" placeholder="请输入章节名" class="form-control">
+    {% endif %}
+    <br>
+<input type="text" name="id" value="{{ rs.id }}" hidden>
+<textarea name="content" class="form-control" rows="15">{{ rs.content }}</textarea>
+<input type="text" class="flag" value="0" name="pubflag" hidden>
+{% csrf_token %}
+</form>

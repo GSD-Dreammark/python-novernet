@@ -1,0 +1,64 @@
+{% extends 'personhome/userhome_head.html' %}
+{% load staticfiles %}
+{% block main %}
+    <h3>作家申请</h3>
+    <form method="post" action="/index/userhome/" enctype="multipart/form-data">
+        <input type="text" name="realname" placeholder="真实姓名" class="form-control"><br>
+        <input type="text" name="idnumber" placeholder="身份证号" class="form-control"><br>
+        <input type="number" name="telnumber" placeholder="电话号码" class="form-control"><br>
+        <input type="text" name="qq" placeholder="QQ号" class="form-control"><br>
+        <input type="text" name="biming" placeholder="笔名" class="form-control"><br>
+        <h4>上传身份证照片</h4><input type="file" name="idimage" id="uploading_id" onchange="xmTanUploadImg(this)"
+                               accept="image/*"><br>
+        <img id="xmTanImg" width="300px" height="300px"/><br>
+        <h4>个人手持身份证照片</h4><input type="file" name="idperson" id="uploading_id_person" onchange="xmTanUploadImg(this)"
+                                 accept="image/*"><br>
+        <img id="xmTanImg1" width="300px" height="300px"/><br><br>
+        <textarea rows="5" cols="10" placeholder="申请说明" class="form-control" name="appexplain"></textarea><br>
+        {% csrf_token %}
+        <input type="submit" value="提交申请"><br>
+    </form>
+    <script type="text/javascript">
+        //判断浏览器是否支持FileReader接口
+        if (typeof FileReader == 'undefined') {
+            document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+            //使选择控件不可操作
+            document.getElementById("uploading_id").setAttribute("disabled", "disabled");
+            document.getElementById("uploading_id_person").setAttribute("disabled", "disabled");
+        }
+
+        //选择图片，马上预览
+        function xmTanUploadImg(obj) {
+            var file = obj.files[0];
+            console.log(obj);
+            console.log(file);
+            console.log("file.size = " + file.size);  //file.size 单位为byte
+            var reader = new FileReader();
+            //读取文件过程方法
+            reader.onloadstart = function (e) {
+                console.log("开始读取....");
+            }
+            reader.onprogress = function (e) {
+                console.log("正在读取中....");
+            }
+            reader.onabort = function (e) {
+                console.log("中断读取....");
+            }
+            reader.onerror = function (e) {
+                console.log("读取异常....");
+            }
+            reader.onload = function (e) {
+                console.log("成功读取....");
+                if (obj.id === "uploading_id") {
+                    var img = document.getElementById("xmTanImg");
+                    img.src = e.target.result;
+                }
+                else {
+                    var img = document.getElementById("xmTanImg1");
+                    img.src = e.target.result;
+                }
+            }
+            reader.readAsDataURL(file)
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'news/new_head.html' %}
+{% load staticfiles %}
+{% block main %}
+     <table class="table table-bordered" >
+         <caption><h3>系统通知</h3></caption>
+        <tr align="center"><td>来自</td><td>标题</td><td>日期</td></tr>
+    {% for new in message %}
+        <tr align="center"><td>{{ new.sendName }}</td><td>{{ new.contents }}</td><td>{{ new.updtime }}</td></tr>
+    {% endfor %}
+     </table>
+{% endblock %}

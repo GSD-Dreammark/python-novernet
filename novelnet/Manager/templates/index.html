@@ -1,18 +1,50 @@
 {% extends 'source.html' %}
 {% load staticfiles %}
 {% block head %}
-    <link href="{% static 'css/index.css'%} "rel="stylesheet">
-{% endblock%}
+    <link href="{% static 'css/index.css' %} " rel="stylesheet">
+{% endblock %}
 {% block mainbody %}
+    <script>
+        function poplogin() {
+            $('#modalbody').load('loginHtml/'),
+                $('#myModal').modal('show'),
+                $('#myModalLabel').text('登录')
+        }
+
+        function popregister() {
+            $('#modalbody').load('registerHtml/')
+            $('#myModal').modal('show')
+            $('#myModalLabel').text('注册')
+        }
+    </script>
     <div id="title">
-    <span class="login">小说网</span>
-        <form role="form" >
+        <span class="login">小说网</span>
+        <form role="form" class="form1">
             <div class="input-group">
-            <span class="input-group-addon"><a href="#">搜小说</a></span>
-            <input type="text"  class="title_input" placeholder="">
+                <span class="input-group-addon"><a href="#">搜小说</a></span>
+                <input type="text" class="title_input" placeholder="">
             </div>
         </form>
-    <ul class="nav nav-tabs title_ul"><li><a href="#">登录</a></li><li><a href="#" data-toggle="modal" data-target="#myModal">注册</a></li><li><a href=""> 看过</a></li><li><a href=""> 书架</a></li><li><a href=""> 消息</a></li><li><a href=""> 写书</a></li><li><a href=""> 充值</a></li></ul>
+        <ul class="nav nav-tabs title_ul">
+            {% if userlogin == None %}
+                <li><a href="#" data-toggle="modal" onclick="poplogin()">登录</a></li>
+                <li><a href="#" data-toggle="modal" onclick="popregister() ">注册</a></li>
+                <li><a href=""> 看过</a></li>
+                <li><a href=""> 书架</a></li>
+                <li><a href=""> 消息</a></li>
+                <li><a href=""> 写书</a></li>
+                <li><a href=""> 充值</a></li>
+            {% else %}
+                <li><a>你好,{{ userlogin.nicheng }}</a></li>
+                <li><a href="/index/show_news">新消息 <span class="badge">{{ session.msgnum }}</span></a>&nbsp;</li>
+                {% if userlogin.role == 0 %}
+                    <li><a href="/index/managerhome/">管理主页</a>&nbsp;</li>
+                {% else %}
+                    <li><a href="/index/userhome_head/">个人主页</a>&nbsp;</li>
+                {% endif %}
+                <li><a href="/index/write_off/">注销</a></li>
+            {% endif %}
+        </ul>
         <!-- 模态框（Modal） -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -26,10 +58,7 @@
                             注册
                         </h4>
                     </div>
-                    <div class="modal-body" align="center">
-                        <input type="text" name="username" placeholder="用户名"><br>
-                        <input type="email" name="email" placeholder="email"><br>
-                        <input type="password" name="password" placeholder="密码"><br>
+                    <div class="modal-body" align="center" id="modalbody">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -44,11 +73,25 @@
     </div>
     <div class="container">
         <div class="row">
-        <div id="body" class="col-xs-10"><h1>Body</h1></div>
+            <div class="col-xs-1"></div>
+            <div id="body" class="col-xs-10"><h1>{{ username }}</h1></div>
         </div>
         <div class="row">
-        <div id="foot" class="col-xs-10"><h1>Foot</h1>
+            <div class="col-xs-1"></div>
+            <div id="foot" class="col-xs-10"><h1>Foot</h1>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-xs-0.5"></div>
+            <div id="foot" class="col-xs-3">
+                <table width="200px">
+                    <caption>最近更新</caption>
+                    <tr align="center"><td>小说</td><td>章节</td></tr>
+                </table>
+            </div>
+            <div id="foot" class="col-xs-5"></div>
+            <div id="foot" class="col-xs-3"></div>
+            <div class="col-xs-0.5"></div>
+        </div>
     </div>
 {% endblock %}

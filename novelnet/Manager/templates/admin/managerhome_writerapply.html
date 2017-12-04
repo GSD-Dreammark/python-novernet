@@ -1,0 +1,52 @@
+{% extends 'admin/managerhome.html' %}
+{% load staticfiles %}
+{% block main %}
+    <script>
+        function change(id) {
+              $('#modalbody').load('/index/writer_detail_message/?id='+id),
+              $('#myModal').modal('show'),
+              $('#myModalLabel').text(' ')
+        }
+    </script>
+    <table class="table table-bordered">
+        <caption>作家申请表</caption>
+        <thead>
+        <th>真实姓名</th>
+        <th>昵称</th>
+        <th>创建时间</th>
+        <th>审核</th>
+        </thead>
+        <tbody>
+        {% for data in rs %}
+            <tr style="border: 1px solid ">
+                <td>{{ data.realname }}</td>
+                <td >{{ data.biming }}</td>
+                <td >{{ data.updtime }}</td>
+                <td><a href="#" onclick="change({{ data.id }})" data-toggle="modal" >审核</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    注册
+                </h4>
+            </div>
+            <div class="modal-body" align="center" id="modalbody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+{% endblock %}

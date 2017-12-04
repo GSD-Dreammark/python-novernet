@@ -1,0 +1,82 @@
+{% extends 'personhome/userhome_head.html' %}
+{% load staticfiles %}
+{% block main %}
+    <script>
+        var arr1 = ['玄幻','科幻','奇幻','仙侠'];
+        var arr2 = [
+            ['东方玄幻','异世大陆','高武世界','王朝争霸'],
+            ['bbbbb','bbbbbb','bbbbbb','bbbbbbb'],
+            ['ccccc','cccccc','ccccccc','cccccc'],
+            ['ddddd','ddddd','ddddd','ddddd'],
+        ]
+        function typeChange(thisa){
+            ii=thisa.value-1;
+            len=thisa.options.length;
+            for(var i=0;i<len;i++)
+            {
+                myform.typetwoid.options[0].remove()
+            }
+            for(var i=0;i<len;i++)
+            {
+                item = new Option(arr2[ii][i],i+1);
+                myform.typetwoid.options.add(item)
+            }
+
+
+        }
+    </script>
+    <form name="myform" method="post" action="/index/Cnew_work/">
+        <table align="center" width="80%">
+            <tr>
+                <td>作品名称</td>
+                <td align="left"><input type="text" name="workname"/></td>
+            </tr>
+            <tr>
+                <td>作品类型</td>
+                <td align="left">
+                    <select name="typeoneid" onchange="typeChange(this)">
+                        <script>
+                            i = 1;
+                            for (var key in arr1) {
+                                document.write('<option value="' + (i++) + '">' + arr1[key] + '</option>');
+                            }
+
+                        </script>
+                    </select>
+                    &nbsp;
+                    <select name="typetwoid">
+                        <script>
+                            i = 1;
+                            for (var key in arr2[0]) {
+                                document.write('<option value="' + (i++) + '">' + arr2[0][key] + '</option>');
+                            }
+
+                        </script>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>作品标签</td>
+                <td align="left"><input type="text" name="label"/></td>
+            </tr>
+            <tr>
+                <td>授权类型</td>
+                <td align="left">
+                    独家首发<input type="radio" name="licensetype" checked="true" value="0"/>&nbsp;
+                    驻站作品<input type="radio" name="licensetype" value="1"/>
+                </td>
+            </tr>
+            <tr>
+                <td>作品介绍</td>
+                <td align="left"><textarea name="introduce" rows="5" cols="45"></textarea></td>
+            </tr>
+            <tr>
+                <td>扉页寄语</td>
+                <td align="left"><textarea name="firstmsg" rows="5" cols="45"></textarea></td>
+            </tr>
+            {% csrf_token %}
+            <tr><td colspan="2" align="center"><input type="submit" value="提交"></td></tr>
+        </table>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,47 @@
+<script>
+    function apply_success() {
+        if (confirm("确认通过")){
+            window.location.assign("/index/apply_success/?id={{rs.id}}")
+        }
+        
+    }
+     function apply_reject() {
+         var person=prompt("请输入申请驳回的原因");
+
+         if (person==null){
+{#                alert(person)#}
+         } else {
+             window.location.assign("/index/apply_default/?id={{rs.id}}&&contents="+person+"")
+         }
+
+    }
+</script>
+<table class="table table-bordered">
+    <caption>作家申请详细信息</caption>
+    <tr>
+        <td>真实姓名</td>
+        <td>{{ rs.realname }}</td>
+    </tr>
+    <tr>
+        <td>电话号码</td>
+        <td>{{ rs.telnumber }}</td>
+    </tr>
+    <tr>
+        <td>身份证号码</td>
+        <td>{{ rs.idnumber }}</td>
+    </tr>
+    <tr>
+        <td>身份证照片</td>
+        <td><img src="/index/show_image/?imgurl={{ rs.idimage }}" width="300px" height="300px"></td>
+    </tr>
+
+    <tr>
+        <td>个人手持身份证照片</td>
+         <td><img src="/index/show_image/?imgurl={{ rs.idperson }}" width="300px" height="300px"></td>
+    </tr>
+    <tr>
+        <td>申请说明</td>
+        <td>{{ rs.appexplain }}</td>
+    </tr>
+    <tr><td colspan="2" align="center"><input type="button" value="审核通过" onclick="apply_success()" class="btn btn-primary">&nbsp&nbsp&nbsp&nbsp<input type="button" value="审核驳回" onclick="apply_reject()" class="btn btn-primary"></td></tr>
+</table>

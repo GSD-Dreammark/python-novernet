@@ -1,0 +1,5 @@
+<form action="/index/submit_chapter_name/" method="post">
+    <input type="text" name="chaptername" class="form-control" placeholder="章节名称"><br>
+    {% csrf_token %}
+    <input type="submit" value="提交">
+</form>

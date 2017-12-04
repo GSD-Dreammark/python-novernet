@@ -1,0 +1,133 @@
+﻿create table users(id bigint not null auto_increment primary key,
+
+	email varchar(60) not null,
+
+	pwd varchar(60) not null,
+
+	nicheng varchar(60) not null,
+
+	updtime timestamp not null,
+
+	role tinyint not null default 1,
+
+	msgnum int not null default 0,
+
+	createtime timestamp not null,
+
+	unique key emailuniq (email),
+
+	unique key nichenguniq (nicheng)
+
+)ENGINE=innodb DEFAULT CHARSET=utf8;
+
+
+create table writers(
+    id bigint not null primary key,/*同users 的 id 值一样*/
+
+	realname varchar(60) not null,
+
+	idnumber varchar(60) not null,  /*身份证号*/
+
+	telnumber varchar(60) not null,
+	
+	qq varchar(60), /*QQ号*/
+	
+	biming varchar(60) not null,    /*笔名*/
+	
+	idimage varchar(60) NOT NULL,      /*身份证照片*/
+
+	idperson varchar(60) NOT NULL,     /*手持身份证照片*/
+
+	appexplain varchar(255) not null,   /*申请说明*/
+
+ 	updtime timestamp not null,
+	createtime timestamp not null,
+
+	unique key iduniq(idnumber),
+
+	unique key teluniq(telnumber),
+
+	unique key biminguniq(biming)
+
+)ENGINE=innodb DEFAULT CHARSET=utf8;
+create table msgs(
+	id
+	sendid
+	acceptid
+	content
+	createtime
+	readflag
+)ENGINE=innodb DEFAULT CHARSET=utf8;
+
+create table worktypeone(
+
+	id bigint not null auto_increment primary key,
+
+	typename varchar(60) not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;
+
+
+create table worktypetwo(
+
+	id bigint not null auto_increment primary key,
+
+	typename varchar(60) not null,
+
+	oneid bigint not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;
+
+
+create table works(
+
+    id bigint not null auto_increment primary key,
+
+    uid bigint not null,                /*作者id*/
+
+	workname varchar(60) not null,
+
+	typeoneid bigint not null,
+
+	typetwoid bigint not null,
+
+	label varchar(60) not null,
+
+	licensetype tinyint not null default 0,
+
+	introduce varchar(300) not null,
+
+	firstmsg varchar(300) not null,
+
+	chaptname varchar(240) ,
+
+	curchapte bigint not null default 0,
+
+	pubflag tinyint not null default 0,     /*0表未发布*/
+
+	finishflag tinyint not null default 0,  /*0表未完成*/
+
+	cnum int not 	null default 0,            /*收藏数*/
+
+	updtime timestamp not null,
+
+	createtime timestamp not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;
+create table chapters(
+id bigint not null auto_increment primary key,
+uid bigint not null,                /*作者id*/
+worksid bigint not null,
+chaptername varchar(240) not null,
+content text,
+pubflag tinyint default 0,          /*0表未发布,1表已发布*/
+updtime timestamp not null,
+createtime timestamp not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;
+create table messages(
+id bigint not null auto_increment primary key,
+sendId bigint not null,
+sendName varchar(60) not null,
+recId bigint not null,
+contents varchar(300) not null,
+readflag tinyint default 0,          /*0未读*/
+updtime timestamp not null,
+createtime timestamp not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;

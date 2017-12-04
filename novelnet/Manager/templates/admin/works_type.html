@@ -1,0 +1,18 @@
+{% extends 'admin/managerhome.html' %}
+{% load staticfiles %}
+{% block main %}
+    作品类别
+    <table>
+        {% for key,value in rs.items %}
+            <tr>
+            {% for item in value %}
+                {% if item.pid is None %}
+                        <td>+{{ item.list_name }}</td>
+                {% else %}
+                        <td>&nbsp&nbsp{{ item.list_name }}</td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

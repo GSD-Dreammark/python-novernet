@@ -1,0 +1,28 @@
+{% extends 'personhome/userhome_head.html' %}
+{% load staticfiles %}
+{% block main %}
+    <br>
+    <table class="table table-bordered"class="table table-bordered">
+        <caption> 当前作品总数1本<a href="/index/create_works"><button class="btn btn-primary" style="margin-left: 680px;">创建作品</button></a></caption>
+        <thead>
+        <tr>
+            <td>书名</td>
+            <td>最新章节</td>
+            <td>编辑分组</td>
+            <td>收藏</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        {% for item in rs %}
+        <tr><td>{{ item.workname  }}</td><td>{{item.chaptname }}</td><td>{{ item.typeoneid }}{{ item.typetwoid  }}</td><td>{{item.cnum}}</td><td>{{item.finishflag }}</td><td>
+            {% if item.pubflag == 0%}
+                <a href="/index/work_manager/?wid={{ item.id }}">创建新章节</a>
+            {% else %}
+                已完本
+            {% endif %}
+        </td></tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

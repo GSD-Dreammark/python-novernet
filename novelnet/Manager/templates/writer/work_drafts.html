@@ -1,0 +1,66 @@
+<script>
+    function createChapter() {
+        $('#modalbody').load('/index/chapter_name/'),
+            $('#myModal').modal('show'),
+            $('#myModalLabel').text('请输入章节名')
+    }
+    function editcharpter(e) {
+        $('#content').load('/index/charpter_content?cid='+e)
+    }
+    function save() {
+        $('.charpter_form').submit()
+    }
+    function release() {
+        $('.flag').attr('value',1)
+        $('.charpter_form').submit()
+
+    }
+
+</script>
+<br>
+<table class="table table-bordered">
+    <thead>
+    <tr align="center">
+        <td colspan="2">章节名</td>
+        <td colspan="4" align="right">
+            <button class="btn btn-default" style="margin-left: 20px" onclick="save()">保存</button>
+            <button class="btn btn-success" style="margin-left: 20px"onclick="release()">发布</button>
+            <button onclick="createChapter()" class="btn btn-primary" style="margin-left: 20px" data-toggle="modal">
+                新建章节
+            </button>
+        </td>
+    </tr>
+    </thead>
+    <tr>
+        <td colspan="2">
+        <table class="table table-bordered">
+        {% for item in rs %}
+            <tr><td><a href="#" onclick="editcharpter({{ item.id }})">{{ item.chaptername }}</a></td></tr>
+        {% endfor %}
+        </table>
+        </td><td colspan="4" id="content">content</td>
+    </tr>
+</table>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    注册
+                </h4>
+            </div>
+            <div class="modal-body" align="center" id="modalbody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
